@@ -23,7 +23,7 @@ uses
   Console,
   Framebuffer,
   Player,
-  VGShapes,
+  VGlayers,
   pushdash,
   dispmanx,
   UltiboUtils,  {Include Ultibo utils for some command line manipulation}
