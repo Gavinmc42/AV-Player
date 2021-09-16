@@ -63,23 +63,21 @@ begin
   WaitForSDDrive;
 
   {Initialize OpenVG and the VGShapes unit}
-  vgshapessetlayer(0);
-  vgshapesinit(Width, Height);
-
   vgshapessetlayer(2);
-  VGShapesInit(Width, Height, DISPMANX_FLAGS_ALPHA_FROM_SOURCE);
 
-  vgshapessetlayer(3);
   vgshapesinit(Width, Height, DISPMANX_FLAGS_ALPHA_FROM_SOURCE);
-
-  VGShapesWindowOpacity(128);
   {Start a picture the full width and height of the screen}
+
+
   VGShapesStart(Width, Height);
+  VGShapesBackgroundRGB(0,0,0, 0.0);
+  VGShapesWindowOpacity(180);
+
 
   SpacingX := 320;
   SpacingY := 240;
 
-  VGShapesBackgroundRGB(0,0,0, 0.0);
+
 
   AudioThread := TAudioThread.Create('C:\push.wav', True);
   VideoThread := TVideoThread.Create('C:\output.h264', True);
@@ -93,23 +91,14 @@ begin
   Amps := 16.7;
 
 
-  vgshapessetlayer(2);
-  vgshapesstart(Width, Height, true);
-  pushspeedo( 'Volts', 960 - 520, SpacingY,240, 20, 5);
-  pushspeedo( 'KPH', 960 - 200, SpacingY,360, 60, 10);
-  pushspeedo( 'Watts',960 + 200, SpacingY,360, 600, 100);
-  pushspeedo( 'Amps', 960 + 520, SpacingY,240, 30, 5);
-  VGShapesEnd;
-
-  vgshapessetlayer(3);
-  vgshapesstart(Width, Height, true);
-
-
   while True do
 
     begin
       VGShapesWindowClear;
-
+      pushspeedo( 'Volts', 960 - 520, SpacingY,240, 20, 5);
+      pushspeedo( 'KPH', 960 - 200, SpacingY,360, 60, 10);
+      pushspeedo( 'Watts',960 + 200, SpacingY,360, 600, 100);
+      pushspeedo( 'Amps', 960 + 520, SpacingY,240, 30, 5);
       pushneedle(960 - 520,SpacingY,240, 20, Volts);
       pushneedle(960 - 200,SpacingY,360, 60, KPH);
       pushneedle(960 + 200,SpacingY,360, 600, Watts);
